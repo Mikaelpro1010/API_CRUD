@@ -143,9 +143,9 @@ createForm.addEventListener('submit', event => {
             cell3.innerHTML = newEmail
             cell4.innerHTML = newActive ? 'Ativo' : 'Inativo';
             cell5.innerHTML = newBirthdate;
-            cell6.innerHTML = `<button onclick="editContact(${contactId}, '${token}')">Editar</button>
-                                <button onclick="deleteContact(${contactId}, '${token}')">Excluir</button>
-                                <button onclick="viewContact(${contactId}, '${token}')">Visualizar</button>`;
+            cell6.innerHTML = `<button onclick="editContact(${contactId}, '${newToken}')">Editar</button>
+                                <button onclick="deleteContact(${contactId}, '${newToken}')">Excluir</button>
+                                <button onclick="viewContact(${contactId}, '${newToken}')">Visualizar</button>`;
 
             createNameInput.value = ''; // Limpar os campos do formulário
             createPhoneInput.value = '';
@@ -282,8 +282,6 @@ function editContact(contactId, newToken) {
             .then(response => response.json())
             .then(data => {
                 console.log('Contato atualizado:', data);
-                // Atualizar a tabela ou fazer outras ações necessárias
-                // ...
 
                 // Fechar o modal de edição
                 $('#editModal').modal('hide');
@@ -297,21 +295,3 @@ function editContact(contactId, newToken) {
         console.error('Error while viewing contact:', error);
     });
 }
-
-
-  
-
-
-// // Função para editar um contato
-// function editContact(contactId) {
-//   console.log('Editar contato com ID:', contactId);
-//   // Implemente a lógica de edição aqui
-// }
-
-// // Função para excluir um contato
-// function deleteContact(contactId) {
-//   console.log('Excluir contato com ID:', contactId);
-//   // Implemente a lógica de exclusão aqui
-// }
-
-// // Carregar a lista de contatos inicialmente
