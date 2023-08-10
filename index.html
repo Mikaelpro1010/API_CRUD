@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contatos CRUD</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+  integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Index</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="view_contatos.html">Contatos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card mt-3">
+            <!-- <div class="card-header">
+                <h2>Criar Contato</h2>
+            </div> -->
+            <div class="card-body">
+                <!-- Formulário para criar um novo contato -->
+                <form id="create-form"> 
+                    <div class="m-0 p-0 row">
+                        <div class="col-md-4">
+                            <label for="">Nome:</label>
+                            <input type="text" id="create-name" class="form-control" required>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <label for="">Telefone:</label>
+                            <input type="text" id="create-phone" class="form-control" required>
+                        </div>
+    
+                        <div class="col-md-5">
+                            <label for="">Email:</label>
+                            <input type="email" id="create-email" class="form-control" required>
+                        </div>
+    
+                        <div class="col-md-2 mt-2">
+                            <label for="">Data de nasc:</label>
+                            <input type="date" id="create-birthdate" class="form-control" required>
+                        </div>
+                        
+                        <div class="col-md-3 mt-4">
+                            <label for="">Ativo:</label>
+                            <input type="checkbox" id="create-active">
+                        </div>
+                    </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" type="submit">Criar</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="text-center">
+                    <h3>Contatos</h3>
+                </div>
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">Nome</th>
+                          <th scope="col">Telefone</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Data de Nascimento</th>
+                          <th scope="col">Ações</th>
+                      </tr>
+                  </thead>
+                  <tbody id="contact-table">
+                      <!-- Os contatos serão adicionados aqui -->
+                  </tbody>
+                </table>
+            </div>
+            <div class="modal" tabindex="-1" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal para editar contato -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Contato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Campos de edição -->
+                    <input type="text" id="edit-name" class="form-control" placeholder="Nome">
+                    <input type="text" id="edit-phone" class="form-control" placeholder="Telefone">
+                    <input type="email" id="edit-email" class="form-control" placeholder="Email">
+                    <!-- Outros campos de edição aqui -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="save-changes">Salvar Alterações</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="script.js">
+    
+  </script>
+</body>
+</html>
